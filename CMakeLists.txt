@@ -2,7 +2,7 @@
 # Copyright (C) Electronic Arts Inc.  All rights reserved.
 #-------------------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.1)
-project(myproject)
+project(cpputility CXX)
 
 #---------------------------------------------------------------------------------------
 # compiler config
@@ -18,14 +18,16 @@ endif()
 #-------------------------------------------------------------------------------------------
 # Options
 #-------------------------------------------------------------------------------------------
-option(myproject_BUILD_BENCHMARK "Enable generation of build files for benchmark" ON)
-option(myproject_BUILD_TESTS "Enable generation of build files for tests" ON)
-option(myproject_BUILD_EXAMPLES "Enable generation of build files for examples" ON)
+option(cpputility_BUILD_BENCHMARK "Enable generation of build files for benchmark" ON)
+option(cpputility_BUILD_TESTS "Enable generation of build files for tests" ON)
+option(cpputility_BUILD_EXAMPLES "Enable generation of build files for examples" ON)
 
 #-------------------------------------------------------
-# header and myproject_SOURCES
+# header and cpputility_SOURCES
 #-------------------------------------------------------
 set(HEADER_BASE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(HEADER_BASE_EXT "${CMAKE_CURRENT_SOURCE_DIR}/ext/include")
+
 
 #---------------------------------------------------------------------------------------
 # essential libraries and variables
@@ -34,13 +36,43 @@ find_package (Threads)
 
 find_package (Boost)
 # 
-find_library(UQ
-    NAMES UQ libUQ
+# find_library(UQ
+#     NAMES UQ libUQ
+# )
+add_library(spdlog INTERFACE)
+target_include_directories(
+    spdlog
+    INTERFACE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/ext/spdlog_logger/include>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
-# find_package(Eigen3 REQUIRED)
-# find_package(spdlog REQUIRED)
-# 
+
+add_library(json INTERFACE)
+target_include_directories(
+    json
+    INTERFACE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/ext/json_cpp/include>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
+
+add_library(eigen INTERFACE)
+target_include_directories(
+    eigen
+    INTERFACE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/ext/eigen/include>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
+
+add_library(catch INTERFACE)
+target_include_directories(
+    catch
+    INTERFACE
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/ext/catch2/include>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
+
+
 #-------------------------------------------------------------------------------------------
 # Sub-projects
 #-------------------------------------------------------------------------------------------
@@ -50,12 +82,16 @@ find_library(UQ
 #     add_subdirectory(test/packages/UQAssert)
 # endif()
 
-if(myproject_BUILD_BENCHMARK)
+if(cpputility_BUILD_BENCHMARK)
     add_subdirectory(benchmark)
 endif()
 
-if(myproject_BUILD_TESTS)
+if(cpputility_BUILD_TESTS)
     add_subdirectory(test)
+endif()
+
+if(cpputility_BUILD_EXAMPLES)
+    add_subdirectory(examples)
 endif()
 
 #-------------------------------------------------------------------------------------------
@@ -66,21 +102,23 @@ endif()
 #-------------------------------------------------------------------------------------------
 # Library definition
 #-------------------------------------------------------------------------------------------
-file(GLOB myproject_SOURCES "src/*.cpp" "include/myproject/*.h")
-add_library(myproject ${myproject_SOURCES})
-include_directories("include")
-target_link_libraries(myproject ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
-# target_link_libraries(myproject ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
+file(GLOB cpputility_SOURCES "src/*.cpp" "include/*.h")
+add_library(cpputility ${cpputility_SOURCES})
+target_include_directories(cpputility PUBLIC ${HEADER_BASE} ${Boost_INCLUDE_DIRS})
+# include_directories(cpputility ${HEADER_BASE})
+target_link_libraries(cpputility ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
+set_target_properties(cpputility PROPERTIES LINKER_LANGUAGE CXX)
+# target_link_libraries(cpputility ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES})
 
 
 #-------------------------------------------------------------------------------------------
 # Include dirs
 #-------------------------------------------------------------------------------------------
-target_include_directories(myproject PUBLIC include UQ)
+# target_include_directories(cpputility PUBLIC include UQ)
 
 #-------------------------------------------------------------------------------------------
 # Installation
 #-------------------------------------------------------------------------------------------
-install(TARGETS myproject DESTINATION lib)
-install(DIRECTORY include/myproject DESTINATION include)
+install(TARGETS cpputility DESTINATION lib)
+install(DIRECTORY include/cpputility DESTINATION include)
 

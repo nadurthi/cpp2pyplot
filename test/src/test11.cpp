@@ -1,5 +1,5 @@
 #include <iostream>
-#include "myproject/base.h"
+
 
 
 #include <cstdio>
@@ -24,8 +24,6 @@ std::string exec(const char* cmd) {
 
 int main(int argc, char * argv[]){
 
-	V v;
-	div(v);
 	std::cout << "test ok \n";
 
 	exec("python -c \"import pandas as pd;import numpy as np;df=pd.DataFrame();print df;import matplotlib.pyplot as plt;plt.plot([1,2],[1,2]);plt.show();\"");
