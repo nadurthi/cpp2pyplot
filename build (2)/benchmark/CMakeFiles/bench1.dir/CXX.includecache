@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/venkat/GoogleDrive/repos/cpputility/benchmark/src/bench1.cpp
+benchmark/benchmark.h
+/home/venkat/GoogleDrive/repos/cpputility/benchmark/src/benchmark/benchmark.h
+array
+-
+vector
+-
+deque
+-
+list
+-
+forward_list
+-
+set
+-
+map
+-
+unordered_set
+-
+unordered_map
+-
+string
+-
+

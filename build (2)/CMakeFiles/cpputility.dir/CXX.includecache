@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/venkat/GoogleDrive/repos/cpputility/src/testbinary2string.cpp
+iostream
+-
+string
+-
+sstream
+-
+

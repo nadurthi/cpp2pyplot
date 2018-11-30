@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/venkat/GoogleDrive/repos/cpputility/test/src/test11.cpp
+iostream
+-
+cstdio
+-
+iostream
+-
+memory
+-
+stdexcept
+-
+string
+-
+array
+-
+

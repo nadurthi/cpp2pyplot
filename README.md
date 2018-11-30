@@ -1,1 +1,4 @@
-# cpp2pyplot
+# cpputility
+
+- run bash requirements.sh
+

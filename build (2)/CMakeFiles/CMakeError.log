@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_92320/fast"
+/usr/bin/make -f CMakeFiles/cmTC_92320.dir/build.make CMakeFiles/cmTC_92320.dir/build
+make[1]: Entering directory '/home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_92320.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -O3 -Wall -std=c++1y     -o CMakeFiles/cmTC_92320.dir/CheckSymbolExists.cxx.o -c /home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Linking CXX executable cmTC_92320
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92320.dir/link.txt --verbose=1
+/usr/bin/c++  -O3 -Wall -std=c++1y      -rdynamic CMakeFiles/cmTC_92320.dir/CheckSymbolExists.cxx.o  -o cmTC_92320 
+CMakeFiles/cmTC_92320.dir/CheckSymbolExists.cxx.o: In function `main':
+CheckSymbolExists.cxx:(.text.startup+0x3): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_92320.dir/build.make:97: recipe for target 'cmTC_92320' failed
+make[1]: *** [cmTC_92320] Error 1
+make[1]: Leaving directory '/home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_92320/fast' failed
+make: *** [cmTC_92320/fast] Error 2
+
+File /home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_708a2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_708a2.dir/build.make CMakeFiles/cmTC_708a2.dir/build
+make[1]: Entering directory '/home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_708a2.dir/CheckFunctionExists.cxx.o
+/usr/bin/c++    -O3 -Wall -std=c++1y  -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_708a2.dir/CheckFunctionExists.cxx.o -c /home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_708a2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_708a2.dir/link.txt --verbose=1
+/usr/bin/c++  -O3 -Wall -std=c++1y  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_708a2.dir/CheckFunctionExists.cxx.o  -o cmTC_708a2 -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_708a2.dir/build.make:97: recipe for target 'cmTC_708a2' failed
+make[1]: *** [cmTC_708a2] Error 1
+make[1]: Leaving directory '/home/venkat/GoogleDrive/repos/cpputility/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_708a2/fast' failed
+make: *** [cmTC_708a2/fast] Error 2
+
+

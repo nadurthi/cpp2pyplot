@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/venkat/GoogleDrive/repos/cpputility/examples/src/main.cpp
+cpputility/plotBuilder.h
+/home/venkat/GoogleDrive/repos/cpputility/examples/src/cpputility/plotBuilder.h
+

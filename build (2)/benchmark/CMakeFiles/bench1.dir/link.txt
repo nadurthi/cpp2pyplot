@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -Wall -std=c++1y   -rdynamic CMakeFiles/bench1.dir/src/bench1.cpp.o  -o ../../benchmark/bench1 ../libcpputility.a -lbenchmark -lpthread 

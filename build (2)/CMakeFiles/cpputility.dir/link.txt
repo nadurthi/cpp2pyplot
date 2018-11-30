@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcpputility.a  CMakeFiles/cpputility.dir/src/testbinary2string.cpp.o
+/usr/bin/ranlib libcpputility.a
